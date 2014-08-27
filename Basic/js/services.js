@@ -1,8 +1,33 @@
 
 angular.module('ha').value('constants', {
 	descLimit: 50,
-	maxResults: 50
-})
+	maxResults: 50,
+	minZero : false
+});
+
+angular.module('ha').factory('votingService', ['constants', function(config){
+
+	return{
+		upVote : function(hotel){
+			if (!hotel.rating) {
+				hotel.rating = 0;
+			}
+
+			hotel.rating++;
+		},
+		downVote: function(hotel, minZero){
+			if (!hotel.rating) {
+				hotel.rating = 0;
+			}
+
+			if ( config.minZero && hotel.rating === 0){
+				return;
+			}
+
+			hotel.rating--;
+		}
+	}
+}])
 
 angular.module('ha').factory('hotelsProvider', function(){
 	var hotels = [{
@@ -43,6 +68,10 @@ angular.module('ha').factory('hotelsProvider', function(){
 			"description": "Llama crab credible wow reproachfully brave apart dived rugged this hey luscious obediently pert taped smug crud learned thus arousingly or jeepers as before pill save jeez cunning jeez some pointed near house imprecise chose.",
 			"area": 198000
 		}];
+
+	function showHDesc(){
+
+	}
 
 	return {
 		getHotels : function(){
