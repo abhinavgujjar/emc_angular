@@ -1,4 +1,19 @@
-angular.module('ha', []);
+angular.module('ha', ['ngRoute'])
+.config(['$routeProvider',
+	function($routeProvider) {
+		$routeProvider.when('/listing', {
+			templateUrl: 'partials/listing.html'
+		});
+
+		$routeProvider.when('/create', {
+			templateUrl: 'partials/new.html'
+		});
+
+		$routeProvider.otherwise({
+			redirectTo: '/listing'
+		});
+	}
+]);
 
 angular.module('ha').controller('mainController', ['$scope',
 	'constants', 'hotelsProvider', 'votingService',
