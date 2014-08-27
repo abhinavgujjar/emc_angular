@@ -4,8 +4,6 @@
 	<title>Basic angular application</title>
 	<meta name="description" content="">
 	<link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.css">
-	<script type="text/javascript" src="angular.js"></script>
-	<script type="text/javascript" src="app.js"></script>
 </head>
 <body ng-controller="mainController">
 	<nav class="navbar navbar-default" role="navigation">
@@ -74,7 +72,7 @@
 			<input type="text" ng-model="searchTerm" />
 		</div>
 		<hr/>
-		<div ng-repeat="hotel in hotels | filter: searchTerm | orderBy : 'rating'">
+		<div ng-repeat="hotel in hotels | filter: searchTerm | orderBy : 'rating'| limitTo : maxResults">
 			<div class="row">
 				<div class="col-md-2">
 					<img ng-src="http://i.imgur.com/{{hotel.imgUrl}}" width="150px" />
@@ -100,10 +98,10 @@
 						<div class="col-md-6">{{hotel.location}}</div>
 					</div>
 					<div class="col-md-12">
-						<span ng-show="!showMore">{{hotel.description | limitTo : 50}}</span>
+						<span ng-show="!showMore">{{hotel.description | limitTo : descLimit}}</span>
 						<span ng-show="showMore">{{hotel.description}}</span>
 						<span ng-show="!showMore && hotel.description.length >
-							50">...
+							descLimit">...
 							<span>
 								<a ng-show="!showMore" ng-click="showMore = true">more</a>
 							</span>
@@ -121,5 +119,8 @@
 			<br/>
 		</div>
 	</div>
+	<script type="text/javascript" src="angular.js"></script>
+	<script type="text/javascript" src="app.js"></script>
+	<script type="text/javascript" src="js/services.js"></script>
 </body>
 </html>
