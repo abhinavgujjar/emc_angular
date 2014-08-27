@@ -23,6 +23,9 @@ angular.module('ha').controller('listingController', ['$scope',
 			$location.url('/details');
 		};
 
-		$scope.hotels = hp.getHotels();
+		hp.getHotels().then(function(hotels){
+			$scope.hotels = hotels;
+		});
+
 	}
 ]);
