@@ -60,3 +60,10 @@ angular.module('ha').controller('mainController', ['$scope',
 		}];
 	}
 ])
+
+
+angular.module('ha').filter('toFeet', function(){
+	return function(input){
+		return input * 10.3;
+	}
+})

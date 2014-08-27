@@ -66,30 +66,59 @@
 		</div>
 		<!-- /.container-fluid -->
 	</nav>
+
 	<div class="container">
-		<div  ng-repeat="hotel in hotels">
-			<div class="row">
-			<div class="col-md-2">
-				<img ng-src="http://i.imgur.com/{{hotel.imgUrl}}" width="150px" />
-			</div>
-			<div class="col-md-1">
-				<div><button class="btn btn-success btn-sm" ng-click="upVote(hotel)">Up</button></div>
-				<div class="h3">{{hotel.rating}}</div>
-				<div><button class="btn btn-danger btn-sm" ng-click="downVote(hotel)">Down</button></div>
-			</div>
-			<div class="col-md-9">
-				<div>
-					<div class="col-md-6">
-						<a ng-href="{{hotel.url}}">{{hotel.name}}</a>
-					</div>
-					<div class="col-md-6">{{hotel.location}}</div>
-				</div>
-				<div class="col-md-12">{{hotel.description}}</div>
-				<div class="col-md-12 text-center">{{hotel.price}}</div>
-			</div>
+
+		<div class="row">
+			Search
+			<input type="text" ng-model="searchTerm" />
 		</div>
 		<hr/>
-		<br/>
+		<div ng-repeat="hotel in hotels | filter: searchTerm | orderBy : 'rating'">
+			<div class="row">
+				<div class="col-md-2">
+					<img ng-src="http://i.imgur.com/{{hotel.imgUrl}}" width="150px" />
+				</div>
+				<div class="col-md-1">
+					<div>
+						<button class="btn btn-success btn-sm" ng-click="upVote(hotel)">
+							<span class="glyphicon glyphicon-chevron-up"></span>
+						</button>
+					</div>
+					<div class="h3">{{hotel.rating}}</div>
+					<div>
+						<button class="btn btn-danger btn-sm" ng-click="downVote(hotel)">
+							<span class="glyphicon glyphicon-chevron-down"></span>
+						</button>
+					</div>
+				</div>
+				<div class="col-md-9">
+					<div>
+						<div class="col-md-6">
+							<a ng-href="{{hotel.url}}">{{hotel.name | uppercase}}</a>
+						</div>
+						<div class="col-md-6">{{hotel.location}}</div>
+					</div>
+					<div class="col-md-12">
+						<span ng-show="!showMore">{{hotel.description | limitTo : 50}}</span>
+						<span ng-show="showMore">{{hotel.description}}</span>
+						<span ng-show="!showMore && hotel.description.length >
+							50">...
+							<span>
+								<a ng-show="!showMore" ng-click="showMore = true">more</a>
+							</span>
+						</span>
+
+					</div>
+					<br/>
+					<div class="col-md-12">
+						<div class="col-md-3 h3">{{hotel.price | currency}}</div>
+						<div class="col-md-9 text-right h4">{{hotel.area | toFeet | number : 2}} sq.m</div>
+					</div>
+				</div>
+			</div>
+			<hr/>
+			<br/>
 		</div>
 	</div>
 </body>
