@@ -1,12 +1,17 @@
-angular.module('ha', ['ngRoute'])
-.config(['$routeProvider',
+angular.module('ha', ['ngRoute']);
+
+
+angular.module('ha').config(['$routeProvider',
+
 	function($routeProvider) {
 		$routeProvider.when('/listing', {
-			templateUrl: 'partials/listing.html'
+			templateUrl: 'partials/listing.html',
+			controller : 'mainController'
 		});
 
 		$routeProvider.when('/create', {
-			templateUrl: 'partials/new.html'
+			templateUrl: 'partials/new.html',
+			controller : 'newController'
 		});
 
 		$routeProvider.otherwise({
@@ -14,29 +19,6 @@ angular.module('ha', ['ngRoute'])
 		});
 	}
 ]);
-
-angular.module('ha').controller('mainController', ['$scope',
-	'constants', 'hotelsProvider', 'votingService',
-	function($scope, constants, hp, votingService) {
-		$scope.greeting = 'Hello EMC2';
-		$scope.descLimit = constants.descLimit;
-		$scope.maxResults = constants.maxResults;
-
-		$scope.upVote = function(hotel) {
-			if (!hotel.rating) {
-				hotel.rating = 0;
-			}
-
-			hotel.rating++;
-		}
-
-		$scope.downVote = function(hotel) {
-			votingService.downVote(hotel, true);
-		}
-
-		$scope.hotels = hp.getHotels();
-	}
-])
 
 
 angular.module('ha').filter('toFeet', function() {
