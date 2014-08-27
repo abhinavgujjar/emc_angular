@@ -1,23 +1,28 @@
+/*global angular*/
+'use strict';
+
 angular.module('ha').controller('listingController', ['$scope',
-	'constants', 'hotelsProvider', 'votingService',
-	function($scope, constants, hp, votingService) {
+	'constants', 'hotelsProvider', 'votingService', '$location',
+	function($scope, constants, hp, votingService, $location) {
+
 		$scope.greeting = 'Hello EMC2';
 		$scope.descLimit = constants.descLimit;
 		$scope.maxResults = constants.maxResults;
 
 		$scope.upVote = function(hotel) {
-			if (!hotel.rating) {
-				hotel.rating = 0;
-			}
-
-			hotel.rating++;
-		}
+			votingService.upVote(hotel);
+		};
 
 		$scope.downVote = function(hotel) {
 			votingService.downVote(hotel, true);
-		}
+		};
+
+		$scope.selectHotel = function(hotel){
+			hp.selectedHotel = hotel;
+
+			$location.url('/details');
+		};
 
 		$scope.hotels = hp.getHotels();
 	}
-])
-
+]);

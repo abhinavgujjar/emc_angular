@@ -9,6 +9,11 @@ angular.module('ha').config(['$routeProvider',
 			controller : 'listingController'
 		});
 
+		$routeProvider.when('/details/:hotelId', {
+			templateUrl: 'partials/details.html',
+			controller : 'detailsController'
+		});
+
 		$routeProvider.when('/create', {
 			templateUrl: 'partials/new.html',
 			controller : 'newController'

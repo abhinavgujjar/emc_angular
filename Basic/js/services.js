@@ -79,6 +79,16 @@ angular.module('ha').factory('hotelsProvider', function(){
 		},
 		addHotel : function(hotel){
 			hotels.push(hotel);
+		},
+		getHotel : function(hotelId){
+			var targetHotel;
+			angular.forEach(hotels, function(item){
+				if ( item.id === hotelId){
+					targetHotel = item;
+				}
+			});
+
+			return targetHotel;
 		}
 	}
 
