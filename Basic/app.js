@@ -6,7 +6,7 @@ angular.module('ha').config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.when('/listing', {
 			templateUrl: 'partials/listing.html',
-			controller : 'mainController'
+			controller : 'listingController'
 		});
 
 		$routeProvider.when('/create', {

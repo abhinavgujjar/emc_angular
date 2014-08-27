@@ -1,13 +1,17 @@
 angular.module('ha').controller('newController', ['$scope',
-	'hotelsProvider',
-	function($scope,  hp) {
+	'hotelsProvider', '$location', '$timeout', 
+	function($scope,  hp, $location) {
 
 		$scope.addHotel = function(hotelsForm, hotel){
 
 			if ( hotelsForm.$invalid ){
 				alert('not valid');
 			}
-			console.log(hotel);
+
+			hp.addHotel(hotel);
+
+			$location.url('/listing');
+			
 		}
 		
 	}
