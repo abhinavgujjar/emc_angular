@@ -4,6 +4,8 @@ angular.module('ha').controller('detailsController', ['$scope',
 
 		console.log('hotel id ' + $routeParams.hotelId);
 
-		$scope.hotel = hp.getHotel($routeParams.hotelId);
+		hp.getHotel($routeParams.hotelId).then(function(hotel){
+			$scope.hotel = hotel;
+		});
 	}
 ])
