@@ -6,6 +6,8 @@ angular.module('ha').controller('listingController', ['$scope',
 
 	function($scope, constants, hp, votingService, $location, authService) {
 
+		$scope.favorites = [];
+
 		$scope.greeting = 'Hello EMC2';
 		$scope.descLimit = constants.descLimit;
 		$scope.maxResults = constants.maxResults;
@@ -13,6 +15,10 @@ angular.module('ha').controller('listingController', ['$scope',
 		authService.authReady.then(function() {
 			$scope.authReady = true;
 		})
+
+		$scope.addToFavorites = function(hotel){
+			$scope.favorites.push(hotel);
+		}
 
 		$scope.login = function() {
 			promise.then(function() {

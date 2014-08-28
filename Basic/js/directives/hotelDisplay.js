@@ -4,7 +4,8 @@ directive('hotelDisplay', function(){
         restrict : 'E',
         templateUrl : 'partials/hotelDisplay.html',
         scope: {
-        	hotel : '='
+        	hotel : '=',
+        	addFav : '&'
         }
     }
 })

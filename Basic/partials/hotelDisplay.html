@@ -19,10 +19,13 @@
 		<div>
 			<div class="col-md-6">
 				<a href="#/details/{{hotel.objectId}}" >{{hotel.name | uppercase}}</a>
+				<button class="btn btn-default btn-xs" ng-click="addFav()">
+					<span class="glyphicon glyphicon-star-empty"></span>
+				</button>
 			</div>
-			<div class="col-md-6">{{hotel.location}}</div>
+			<div class="col-md-6 hidden-md">{{hotel.location}}</div>
 		</div>
-		<div class="col-md-12">
+		<div class="col-md-12 hidden-sm">
 			<span ng-show="!showMore">{{hotel.description | limitTo : descLimit}}</span>
 			<span ng-show="showMore">{{hotel.description}}</span>
 			<span ng-show="!showMore && hotel.description.length >

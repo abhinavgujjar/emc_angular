@@ -1,5 +1,6 @@
-<div>
-	<div class="row">
+<div class="row">
+	<div class="col-md-8">
+		<div class="row">
 		<div class="col-md-5">
 			Search
 			<input type="text" ng-model="searchTerm" />
@@ -10,8 +11,16 @@
 	</div>
 	<hr/>
 	<div ng-repeat="hotel in hotels | filter: searchTerm | orderBy : 'rating'| limitTo : maxResults">
-		<hotel-display hotel="hotel"></hotel-display>
+		<hotel-display hotel="hotel" add-fav="addToFavorites(hotel)"></hotel-display>
 		<hr/>
 		<br/>
+	</div>		
+
 	</div>
+	<div class="col-md-4" ng-controller="favoritesController">
+		<h2>Favorites</h2>
+		<hr/>
+		<div ng-repeat="fav in favorites">{{fav.name}}</div>
+	</div>
+
 </div>
