@@ -40,24 +40,11 @@ angular.module('ha').factory('hotelsProvider', ['$http', '$q', 'parseHeaders', '
 
 			},
 			getHotel: function(hotelId) {
-				var deferred = $q.defer();
 
-
-				this.getHotels().then(function(hotels) {
-					var targetHotel;
-
-					angular.forEach(hotels, function(item) {
-						if (item.id === hotelId) {
-							targetHotel = item;
-						}
-					});
-
-					deferred.resolve(targetHotel);
+				return $http.get('https://api.parse.com/1/classes/hotels/' + hotelId, {
+					headers: parseHeaders
 				});
 
-
-
-				return deferred.promise;
 			}
 		}
 
