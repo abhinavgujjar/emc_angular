@@ -1,4 +1,4 @@
-angular.module('ha', ['ngRoute']);
+angular.module('ha', ['ngRoute', 'ngResource']);
 
 
 angular.module('ha').config(['$routeProvider',

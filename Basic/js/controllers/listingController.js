@@ -40,12 +40,6 @@ angular.module('ha').controller('listingController', ['$scope',
 			$location.url('/details');
 		};
 
-		var promise = hp.getHotels()
-
-		promise.then(function(hotels) {
-			$scope.hotels = hotels;
-		});
-
-
+		$scope.hotels = hp.getHotels();
 	}
 ]);
