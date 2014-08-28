@@ -2,12 +2,11 @@
 'use strict';
 
 angular.module('ha').controller('listingController', ['$scope',
-	'constants', 'hotelsProvider', 'votingService', '$location', 'authService',
+	'constants', 'hotelsProvider', 'votingService', '$location', 'authService','$rootScope',
 
 	function($scope, constants, hp, votingService, $location, authService) {
 
-		$scope.favorites = [];
-
+	
 		$scope.greeting = 'Hello EMC2';
 		$scope.descLimit = constants.descLimit;
 		$scope.maxResults = constants.maxResults;
@@ -17,7 +16,8 @@ angular.module('ha').controller('listingController', ['$scope',
 		})
 
 		$scope.addToFavorites = function(hotel){
-			$scope.favorites.push(hotel);
+			$scope.$broadcast('ADD_FAV', hotel);
+			//$scope.favorites.push(hotel);
 		}
 
 		$scope.login = function() {

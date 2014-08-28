@@ -4,8 +4,8 @@
 	<title>Basic angular application</title>
 	<meta name="description" content="">
 	<link rel="stylesheet" type="text/css" href="bootstrap/dist/css/bootstrap.css"></head>
-<body >
-	<nav class="navbar navbar-default" role="navigation">
+<body ng-controller="mainController">
+	<nav ng-show="showNavBar" class="navbar navbar-default" role="navigation">
 		<div class="container-fluid">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -27,30 +27,8 @@
 					<li>
 						<a href="#/create">NEW</a>
 					</li>
-					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-							Dropdown
-							<span class="caret"></span>
-						</a>
-						<ul class="dropdown-menu" role="menu">
-							<li>
-								<a href="#">Action</a>
-							</li>
-							<li>
-								<a href="#">Another action</a>
-							</li>
-							<li>
-								<a href="#">Something else here</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="#">Separated link</a>
-							</li>
-							<li class="divider"></li>
-							<li>
-								<a href="#">One more separated link</a>
-							</li>
-						</ul>
+					<li >
+						<a href="#/create">{{title}}</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -91,5 +69,6 @@
 	<script type="text/javascript" src="js/controllers/detailsController.js"></script>
 	<script type="text/javascript" src="js/controllers/newController.js"></script>
 	<script type="text/javascript" src="js/controllers/favoritesController.js"></script>
+	<script type="text/javascript" src="js/controllers/mainController.js"></script>
 </body>
 </html>
