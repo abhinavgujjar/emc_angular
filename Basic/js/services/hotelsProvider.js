@@ -1,18 +1,26 @@
-angular.module('ha').factory('hotelsProvider', ['$http', '$q',
-	function($http, $q) {
+angular.module('ha').factory('hotelsProvider', ['$http', '$q', 'parseHeaders',
+	function($http, $q, parseHeaders) {
 
 		return {
 			getHotels: function() {
 				var deferred = $q.defer();
-				
-				$http.get('data/hotels.json').then(function(response) {
-					deferred.resolve(response.data.hotels);
+
+				$http.get('https://api.parse.com/1/classes/hotels', {
+					headers: parseHeaders
+				}).then(function(response) {
+					deferred.resolve(response.data.results);
 				})
 
 				return deferred.promise;
 			},
 			addHotel: function(hotel) {
-				hotels.push(hotel);
+
+				$http.post('https://api.parse.com/1/classes/hotels', hotel, {
+					headers: parseHeaders
+				}).success(function() {
+					alert('wooo hooo!')
+				});
+
 			},
 			getHotel: function(hotelId) {
 				var deferred = $q.defer();
